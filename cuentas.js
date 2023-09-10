@@ -17,7 +17,7 @@ mostrarCuentas = function () {
         En la columna NOMBRE concatenar el nombre y el apellido
     */
 
-    let cmpTabla = document.getElementById("tablaCuentas");
+    let cmpTabla = document.getElementById("tablaCuenta");
     let contenidoTabla = "<table ><tr>" +
         "<th>NUMERO CUENTA</th>" +
         "<th>CEDULA</th>" +
@@ -30,13 +30,14 @@ mostrarCuentas = function () {
         contenidoTabla +=
             "<tr><td>" + elementoCuenta.numeroCuenta + "</td>"
             + "<td>" + elementoCuenta.cedula + "</td>"
-            + "<td>" + elementoCuenta.nombre + " " + elementoCuenta.apellido + "</td>"
-            + "<td>" + elementoCuenta.saldo + "</td>"
+            + "<td>" + elementoCuenta.nombre + "</td>"
+            + "<td>" + elementoCuenta.apellido + "</td>"
             + "</tr>"
     }
     contenidoTabla += "</table>";
     cmpTabla.innerHTML = contenidoTabla;
 }
+
 
 /*
     Busca la cuenta en el arreglo en función del número de cuenta,
@@ -80,25 +81,28 @@ agregar = function () {
     //Invoca a agregarCuenta
     //Invoca a mostrarCuentas
 
+    let numeroCuenta = recuperarTexto("txtCuenta");
     let cedula = recuperarTexto("txtCedula");
     let nombre = recuperarTexto("txtNombre");
     let apellido = recuperarTexto("txtApellido");
-    let cta = recuperarTexto("txtCuenta");
+    
     
     let resultado;
 
     acuenta={};
+    acuenta.numeroCuenta=numeroCuenta;
     acuenta.cedula=cedula;
     acuenta.nombre=nombre
     acuenta.apellido=apellido;
-    acuenta.cuenta=cta;
+    
+    
     console.log(acuenta);
-    resultado = buscarCuenta(acuenta.cta);
+    resultado = buscarCuenta(acuenta.numeroCuenta);
     if (resultado == null) {
         cuentas.push(acuenta);
         alert("Cuenta Agregada ");
         console.log(cuentas);
-        mostrarCuentas();
+       
     } else {
         alert("Ya existe esa cuenta " + acuenta.numeroCuenta);
     }
